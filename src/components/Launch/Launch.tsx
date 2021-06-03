@@ -1,21 +1,11 @@
 import React, { useState } from "react";
 import { LaunchesQuery } from "../../generated/graphql";
+
+import { LaunchDetailsContainer } from "../LaunchDetails/index";
 import "./style.css";
-import { Contentss } from "./Content";
 
-import { Layout, Menu, Breadcrumb, Divider } from "antd";
-import {
-  DesktopOutlined,
-  PieChartOutlined,
-  FileOutlined,
-  TeamOutlined,
-  UserOutlined,
-  MailOutlined,
-} from "@ant-design/icons";
-import Title from "antd/lib/skeleton/Title";
-
+import { Layout, Menu, Breadcrumb } from "antd";
 const { Header, Content, Footer, Sider } = Layout;
-const { SubMenu } = Menu;
 
 interface Props {
   data: LaunchesQuery;
@@ -29,33 +19,42 @@ export const Launch: React.FC<Props> = ({ data }) => {
   };
 
   return (
-    <Layout>
+    <Layout className="displayLayout">
       <Header>
         <div className="logo">Space X</div>
       </Header>
 
       <Layout>
-        <Sider theme="light" width="256">
+        <Sider
+          theme="light"
+          width="256"
+          style={{
+            overflow: "auto",
+            height: "100vh",
+            position: "fixed",
+            left: 0,
+          }}
+        >
           <Menu defaultSelectedKeys={["0"]} defaultOpenKeys={["sub1"]}>
             {!!data.launches &&
               data.launches.map(
                 (launch, i) =>
                   !!launch && (
-                    <Menu.Item key={i} onClick={() => menuClick(i)}>
+                    <Menu.Item key={i} onClick={() => menuClick(i + 1)}>
                       {launch.mission_name} - {launch.launch_year}
                     </Menu.Item>
                   )
               )}
           </Menu>
         </Sider>
-        <Layout>
+        <Layout style={{ marginLeft: "200px" }}>
           <Content style={{ padding: "0 100px" }}>
             <Breadcrumb style={{ margin: "16px 0" }}>
               <Breadcrumb.Item>Launch</Breadcrumb.Item>
               <Breadcrumb.Item>Launch Details</Breadcrumb.Item>
             </Breadcrumb>
             <div className="site-layout-content">
-              <Contentss missionDetail={missionNumber} />
+              <LaunchDetailsContainer missionNumber={missionNumber} />
             </div>
           </Content>
           <Footer style={{ textAlign: "center" }}>
@@ -66,37 +65,3 @@ export const Launch: React.FC<Props> = ({ data }) => {
     </Layout>
   );
 };
-
-/*
-import React from "react";
-import { DatePicker } from "antd";
-
-import { LaunchesQuery } from "../../generated/graphql";
-import "./style.css";
-
-interface Props {
-  data: LaunchesQuery;
-}
-
-export const Launch: React.FC<Props> = ({ data }) => {
-  return (
-    <div className="Launches">
-      <DatePicker />
-      { <h3>All SpaceX Launches</h3>
-      <ol className="LaunchesOL">
-        {!!data.launches &&
-          data.launches.map(
-            (launch, i) =>
-              !!launch && (
-                <li key={i} className="LaunchesItem">
-                  {launch.mission_name} - {launch.launch_year} (
-                  {JSON.stringify(launch.launch_success)})
-                </li>
-              )
-          )}
-      </ol>}
-      </div>
-      );
-    };
-
-*/

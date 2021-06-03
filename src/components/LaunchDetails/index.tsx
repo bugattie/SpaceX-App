@@ -2,9 +2,13 @@ import React from "react";
 import { useLaunchInfoQuery } from "../../generated/graphql";
 import { LaunchDetails } from "./LaunchDetails";
 
-export const LaunchDetailsContainer = () => {
+interface Props {
+  missionNumber: number;
+}
+
+export const LaunchDetailsContainer: React.FC<Props> = ({ missionNumber }) => {
   const { data, error, loading } = useLaunchInfoQuery({
-    variables: { id: "13" },
+    variables: { id: missionNumber.toString() },
   });
 
   if (loading) return <div>Loading.....</div>;
