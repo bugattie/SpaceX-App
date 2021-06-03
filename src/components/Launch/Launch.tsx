@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { LaunchesQuery } from "../../generated/graphql";
 import "./style.css";
+import { Contentss } from "./Content";
 
 import { Layout, Menu, Breadcrumb, Divider } from "antd";
 import {
@@ -21,6 +22,12 @@ interface Props {
 }
 
 export const Launch: React.FC<Props> = ({ data }) => {
+  const [missionNumber, changeMissionNumber] = useState(0);
+
+  const menuClick = (index: number) => {
+    changeMissionNumber(index);
+  };
+
   return (
     <Layout>
       <Header>
@@ -29,11 +36,16 @@ export const Launch: React.FC<Props> = ({ data }) => {
 
       <Layout>
         <Sider theme="light" width="256">
-          <Menu defaultSelectedKeys={["1"]} defaultOpenKeys={["sub1"]}>
-            <Menu.Item key="1">Navigation One</Menu.Item>
-            <Menu.Item key="2">Navigation Two</Menu.Item>
-            <Menu.Item key="3">Navigation One</Menu.Item>
-            <Menu.Item key="4">Navigation Two</Menu.Item>
+          <Menu defaultSelectedKeys={["0"]} defaultOpenKeys={["sub1"]}>
+            {!!data.launches &&
+              data.launches.map(
+                (launch, i) =>
+                  !!launch && (
+                    <Menu.Item key={i} onClick={() => menuClick(i)}>
+                      {launch.mission_name} - {launch.launch_year}
+                    </Menu.Item>
+                  )
+              )}
           </Menu>
         </Sider>
         <Layout>
@@ -42,7 +54,9 @@ export const Launch: React.FC<Props> = ({ data }) => {
               <Breadcrumb.Item>Launch</Breadcrumb.Item>
               <Breadcrumb.Item>Launch Details</Breadcrumb.Item>
             </Breadcrumb>
-            <div className="site-layout-content">Content</div>
+            <div className="site-layout-content">
+              <Contentss missionDetail={missionNumber} />
+            </div>
           </Content>
           <Footer style={{ textAlign: "center" }}>
             &copy; Project 8 Space X with React, Typescript and GraphQL
