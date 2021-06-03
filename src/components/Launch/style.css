@@ -1,0 +1,26 @@
+.logo {
+  color: #fff !important;
+  font-weight: 700;
+  font-size: 25px;
+}
+
+/* #components-layout-demo-responsive .logo {
+  height: 32px;
+  margin: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff !important;
+} */
+/* 
+.site-layout-sub-header-background {
+  background: #fff;
+}
+
+.site-layout-background {
+  background: #fff;
+} */
+
+.site-layout-content {
+  background-color: #fff;
+  min-height: 500px;
+  padding: 24px;
+}
