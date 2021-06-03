@@ -2,9 +2,9 @@
 
 SpaceX App with React, Typescript and GraphQL
 
-Actual Blog [SpaceX App Blog](https://blog.logrocket.com/build-a-graphql-react-app-with-typescript).<br/>
-Short Explanation [GraphQL Basics - Build an app with the SpaceX API](https://www.youtube.com/watch?v=7wzR4Ig5pTI&t=90s).<br/>
-Bootcamp Video [Building SpaceX App with GraphQL](https://www.youtube.com/watch?v=gavh9cTxGWI).<br/>
+Actual Blog [SpaceX App Blog](https://blog.logrocket.com/build-a-graphql-react-app-with-typescript).\
+Short Explanation [GraphQL Basics - Build an app with the SpaceX API](https://www.youtube.com/watch?v=7wzR4Ig5pTI&t=90s).\
+Bootcamp Video [Building SpaceX App with GraphQL](https://www.youtube.com/watch?v=gavh9cTxGWI).\
 
 ## Live Demo
 
